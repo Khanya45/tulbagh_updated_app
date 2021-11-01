@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Business Search</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <div class="mt-2">
+      <ion-searchbar
+        color="light"
+        (ionChange)="searchProfile($event)"
+      ></ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      lines="full"
+      button
+      *ngFor="let profile of (searchProfiles ?? profiles)"
+      (click)="dismiss(profile)"
+    >
+      <ion-avatar slot="start">
+        <img [src]="profile?.image200Url" />
+      </ion-avatar>
+      <ion-label>
+        <h3>{{profile?.title}}</h3>
+        <p>{{profile?.webPage}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

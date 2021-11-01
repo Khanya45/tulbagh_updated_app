@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{profile?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <app-profile-details-header [profile]="profile"></app-profile-details-header>
+
+  <app-accordion
+    [blogs]="blogs"
+    [events]="events"
+    [photos]="photos"
+  ></app-accordion>
+</ion-content>

@@ -1,0 +1,29 @@
+<div class="relative">
+  <ion-img [src]="profile?.image200Url" class="banner"></ion-img>
+
+  <ion-fab
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+    *ngIf="(userQuery.isGuest | async) === false"
+  >
+    <ion-fab-button color="primary" (click)="membership(profile)">
+      <ion-icon
+        name="heart"
+        [color]="profile?.canLeave === 'true' ? 'danger' : 'white'"
+      ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="goTo(profile?.uniqueId)">
+      <ion-icon name="information"> </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
+<ion-toolbar color="primary">
+  <ion-label class="ion-text-wrap font-bold">
+    <h6 class="ion-text-center">
+      {{ profile?.title ?? profile?.subject }}
+    </h6>
+  </ion-label>
+</ion-toolbar>

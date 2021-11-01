@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="showAbout()">
+      <ion-button>About</ion-button>
+    </ion-buttons>
+    <ion-title>Discover</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="relative mb-6">
+    <ion-grid class="absolute" *ngIf="weather.today | async as today">
+      <ion-row>
+        <ion-col size="auto">
+          <ion-card
+            class="ion-no-margin"
+            (click)="showWeather()"
+            color="primary"
+          >
+            <ion-item lines="none" color="primary">
+              <ion-avatar slot="start">
+                <ion-img
+                  [src]="'assets/icon/weather/'+today?.weather?.[0]?.icon+'.png'"
+                ></ion-img>
+              </ion-avatar>
+              <ion-label class="text-center">
+                <h2 class="!font-bold">
+                  {{today?.main?.temp|number: '1.0-0'}}°C
+                </h2>
+                <p>{{today?.weather?.[0]?.main}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-fab vertical="top" horizontal="end">
+      <ion-fab-button>
+        <ion-icon src="assets/img/sos.svg"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-img src="assets/img/tulbagh.jpg" class="banner"></ion-img>
+    <div class="w-full absolute -bottom-6 search">
+      <ion-card class="m-2">
+        <ion-item lines="none" button (click)="showSearch()">
+          <ion-icon name="search-outline" slot="start"></ion-icon>
+          <ion-label> Search for a business </ion-label>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>
+
+  <div class="px-1" *ngIf="ready">
+    <app-discover-grid></app-discover-grid>
+  </div>
+  <div class="m-2">
+    <ion-button expand="block" (click)="showAttractions()" class="top">
+      TOP ATTRACTIONS
+    </ion-button>
+  </div>
+  <h5 class="whatsnew w-full text-center">
+    <span class="bg-white px-2.5">Keep up with Tulbagh</span>
+  </h5>
+  <ion-grid class="blogs">
+    <ion-row *ngFor="let blog of blogQuery.selectAll() | async as blogs">
+      <ion-col>
+        <ion-card class="ion-no-margin">
+          <app-blog-item [blog]="blog" [color]="'primary'"></app-blog-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-label>My Profile</ion-label>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+  <ion-grid class="ion-padding-top">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <div class="prof_img">
+          <img
+            [src]="userQuery.avatar | async"
+          />
+        </div>
+        <h1>{{ fullname }}</h1>
+        <h6>{{ username }}</h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h5 class="label_liked" width="100%">My Likes ({{ liked }})
+    <hr style="border: none;">
+  </h5>
+  <div *ngFor="let profile of likedQuery.list | async">
+    <ion-card class="card_images">
+      <img [src]="profile?.image200Url"/>
+      <ion-label>{{profile?.title}}</ion-label>
+    </ion-card>
+  </div>     
+  <div class="sout_btn">
+    <ion-button color="primary">
+      <ion-label class="label_btn" (click)="logout()">Sign Out</ion-label>
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

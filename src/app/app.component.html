@@ -1,0 +1,49 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-grid class="ion-padding-top">
+            <ion-row>
+              <ion-col class="ion-text-center">
+                <img
+                  class="rounded-full w-2/3 block m-auto"
+                  [src]="userQuery.avatar | async"
+                />
+                <ion-menu-toggle *ngIf="userQuery.isGuest | async; else isIn">
+                  <ion-button color="warning" routerLink="login"
+                    >Login
+                  </ion-button>
+                </ion-menu-toggle>
+                <ng-template #isIn
+                  ><h5>{{ userQuery.userName | async }}</h5></ng-template
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color="primary">
+        <ion-menu-toggle>
+          <ion-item lines="full" color="primary" detail routerLink="user-profile">
+            <ion-icon slot="start" icon="person-circle"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-item>
+          <ion-item lines="full" color="primary" detail routerLink="settings">
+            <ion-icon slot="start" icon="settings"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer *ngIf="(userQuery.isGuest | async) === false">
+        <ion-toolbar color="primary">
+          <ion-item lines="none" color="primary" (click)="logout()">
+            <ion-label>Logout</ion-label>
+            <ion-icon name="log-out-outline" slot="end"></ion-icon>
+          </ion-item>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

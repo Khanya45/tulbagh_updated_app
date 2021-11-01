@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{profile?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <ion-card class="m-2">
+    <ion-item lines="none">
+      <ion-icon name="alert-circle-outline" slot="start"></ion-icon>
+      <ion-label>
+        <h1><b>Information</b></h1>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+  <div
+    class="mx-2"
+    *ngIf="wiki?.html"
+    [innerHTML]="sanitizer.bypassSecurityTrustHtml(wiki?.html)"
+  ></div>
+
+  <ion-card class="mx-2">
+    <div
+      *ngIf="center"
+      class="h-52"
+      leaflet
+      [leafletOptions]="options"
+      [(leafletCenter)]="center"
+      [leafletLayer]="layer"
+      (leafletMapReady)="onMapReady($event)"
+    ></div>
+    <ion-item button lines="none" *ngIf="center" (click)="takeMeThere()">
+      <ion-icon name="map-outline" slot="start"></ion-icon>
+      <ion-label>
+        <h2><b>Take me there</b></h2>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

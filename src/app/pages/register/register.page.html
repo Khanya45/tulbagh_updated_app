@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Sign Up </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- src="http://nomadicways.travel/image/2008090514-1135-1701-45x45-3da003866bf311633333014452-452000000-3761/accr-tulbagh-tourism.gif" -->
+<ion-content class="register_form">
+  <div class="logo_img">
+    <img
+      src="assets/img/index-removebg-preview.png"
+    />
+  </div>
+  <!--  -->
+  <form class="register_form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <ion-input placeholder="First Name" type='text' class="input_form" formControlName="name"></ion-input>
+    <br />
+      <ion-input placeholder="Last Name" type='text' class="input_form" formControlName="surname"></ion-input>
+    <br />
+      <ion-input placeholder="Email" type='email' class="input_form" formControlName="email"></ion-input>
+    <br />
+      <ion-input placeholder="Password" type="password" class="input_form" formControlName="password"></ion-input>
+    <br />
+      <ion-input placeholder="Confirm Password" type="password" class="input_form" formControlName="confirmpassword"></ion-input>
+    <br />
+    <div class="register_btn">
+      <ion-button type="submit" class="ion-margin-top mx-0 my-5">Register</ion-button>
+    </div>
+  </form>
+  <!-- nomadicways.travel -->
+  <div class="signUpp">
+    <p>Already have an account? <span (click)="goToLogin()">Login</span></p>
+  </div>
+
+  <ion-col size="12">
+    <div class="footer">
+      <span>Powered by</span>
+      <img src="assets/img/cm24.png" width="50px" />
+    </div>
+  </ion-col>
+</ion-content>
+

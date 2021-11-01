@@ -1,0 +1,18 @@
+<swiper [slidesPerView]="3.5">
+  <ng-template swiperSlide *ngFor="let group of groups; let g = index">
+    <ion-grid
+      class="p-0 border-0 border-r border-black border-solid"
+      [ngClass]="{ 'border-r-0': g === 5 }"
+    >
+      <ion-row
+        *ngFor="let item of group; let i = index"
+        [ngClass]="{ 'border-0 border-b border-black border-solid': !i }"
+      >
+        <ion-col size="12" (click)="goTo(item.title)">
+          <ion-icon [name]="item.icon" size="large"></ion-icon>
+          <p class="m-0" style="font-size: 0.6rem">{{ item.title }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</swiper>

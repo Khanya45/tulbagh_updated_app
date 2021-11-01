@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content force-overscroll="false" color="white">
+  <ion-grid class="h-full">
+    <ion-row class="h-full ion-justify-content-center content-evenly">
+      <ion-col size="12" size-md="6" size-lg="5">
+        <div class="ion-text-center">
+          <img src="assets/img/logo.png" class="m-auto" />
+        </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <ion-input class="input" type="email" formControlName="email" placeholder="Email">
+          </ion-input>
+
+          <ion-input class="input"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          ></ion-input>
+          <p class="text-right text-sm mb-5">Forgot password?</p>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            color="primary"
+            class="ion-margin-top mx-0 my-5"
+          >
+            <ion-spinner
+              color="dark"
+              *ngIf="userQuery.selectLoading() | async; else notLoading"
+            ></ion-spinner>
+            <ng-template #notLoading>LOGIN</ng-template>
+          </ion-button>
+          <p class="text-xs text-center">
+            You don't have a nomadicways.travel account?
+            <span class="font-bold" (click)="goToSignUp()">Sign up</span>
+          </p>
+        </form>
+      </ion-col>
+      <ion-col size="12">
+        <div class="flex items-center justify-center">
+          <span>Powered by</span>
+          <img src="assets/img/cm24.png" width="50px" />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

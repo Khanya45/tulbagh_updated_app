@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Top Attractions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <ion-accordion-group class="h-full">
+    <ion-grid class="h-full ion-no-padding">
+      <ion-row class="h-full">
+        <ion-col size="12" *ngFor="let item of attractions.top10 | async ">
+          <ion-accordion class="shadow-lg" [value]="item?.id">
+            <ion-item slot="header" color="primary">
+              <ion-label class="ion-text-wrap"> {{item?.title}} </ion-label>
+            </ion-item>
+            
+
+            <div slot="content" class="bg-primary p-2">
+              <ion-card class="p-2 m-0">
+                <ion-img [src]="item?.image200Url"></ion-img>
+                <ion-button>View Profile</ion-button><br>
+                {{item?.description}}
+              </ion-card>
+            </div>
+          </ion-accordion>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-accordion-group>
+</ion-content>

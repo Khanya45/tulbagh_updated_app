@@ -1,0 +1,20 @@
+ion-input {
+  // @apply border border-solid rounded-lg my-3;
+  --padding-start: 10px;
+  --background: var(--ion-color-white);
+  --color: var(--ion-color-dark);
+}
+
+.input {
+  border: 2px solid #174060;
+  border-radius: 20px;
+  margin: 2% 0;
+}
+
+ion-content {
+  color: black;
+}
+
+.m-auto {
+  height: 35vh;
+}

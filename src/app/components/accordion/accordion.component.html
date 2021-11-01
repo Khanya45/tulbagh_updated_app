@@ -1,0 +1,66 @@
+<ion-accordion-group (ionChange)="onChange($event)">
+  <ion-accordion value="blog">
+    <ion-item slot="header" color="primary">
+      <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+      <ion-label>Blog</ion-label>
+    </ion-item>
+    <div slot="content" class="bg-primary">
+      <swiper [slidesPerView]="1.5" #blogSlides>
+        <ng-template swiperSlide *ngFor="let blog of blogs">
+          <ion-card class="mx-1 my-2">
+            <app-blog-item [blog]="blog"></app-blog-item>
+          </ion-card>
+        </ng-template>
+      </swiper>
+    </div>
+  </ion-accordion>
+  <ion-accordion value="gallery">
+    <ion-item slot="header" color="primary">
+      <ion-icon name="images-outline" slot="start"></ion-icon>
+      <ion-label>Gallery</ion-label>
+    </ion-item>
+
+    <div slot="content" class="bg-primary">
+      <swiper [slidesPerView]="1.5" #photoSlides>
+        <ng-template swiperSlide *ngFor="let photo of photos">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <img [src]="photo?.largeImageUrl" />
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ng-template>
+      </swiper>
+    </div>
+  </ion-accordion>
+  <ion-accordion value="Events">
+    <ion-item slot="header" color="primary">
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>Events</ion-label>
+    </ion-item>
+
+    <div slot="content" class="bg-primary px-1">
+      <swiper [slidesPerView]="1.5" #eventSlides>
+        <ng-template swiperSlide *ngFor="let event of events">
+          <ion-card class="mx-1 my-2" (click)="goToEvent(event)">
+            <ion-item lines="none" class="w-full">
+              <ion-label>
+                <h2>{{ event?.title }}</h2>
+                <p>{{ event.location }}</p>
+              </ion-label>
+              <ion-text slot="end">
+                <p class="m-0 text-xs">
+                  {{ event.startDate | date: "shortTime" }}
+                </p>
+                <p class="m-0 text-xs">
+                  {{ event.endDate | date: "shortTime" }}
+                </p>
+              </ion-text>
+            </ion-item>
+          </ion-card>
+        </ng-template>
+      </swiper>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>
